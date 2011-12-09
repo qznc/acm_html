@@ -1,0 +1,151 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="acm.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>A Native Assembler Backend for the X10 Compiler</h1>
+<div class="author">
+<span class="name">Andreas Zwinkau</span>
+<span class="name">Max Mustermann</span>
+<span class="institute">Karlsruhe Institute of Technology</span>
+<span class="email">{zwinkau,mustermann}@kit.edu</span>
+</div>
+<div class="author">
+<span class="name">Fred Flymuffin</span>
+<span class="institute">Washington University in St. Louis</span>
+<span class="email">flymuffin@cs.wustl.edu</span>
+</div>
+
+<div id="content">
+<h2 class="uncounted">Abstract</h2>
+<p>In the year 2020 there will be chips with 1000 or more cores. Due to
+architectural restrictions such multiprocessor systems on a chip (MPSoC)
+will increasingly look similar to current cluster architectures. In
+other words, future embedded applications will look like current cluster
+applications used in scientific/high-performance computing. Invasive
+Computing is a new paradigm, which encourages resource-aware
+programming. The X10 language is an appropriate tool in this context,
+as it provides a modern programming language with a partitioned global
+address space (PGAS) approach.  However, in embedded systems the compiler
+must often adapt very closely the target architecture to support its
+special features. To avoid the problems with the current Java and C++
+backends, we develop an additional one, which is based on libFirm and
+outputs assembler.</p>
+
+<div id="categories">
+<span class="title">Categories and Subject Descriptors</span>
+D.1.3 [Software]: Programming Techniques—Concurrent Programming;
+C.1.4 [Computer Systems Organization]: Processor Architectures—Parallel Architectures
+</div>
+
+<div id="terms">
+<span class="title">General Terms</span>
+X10, MPSoC, Resource-aware programming
+</div>
+
+<div id="keywords">
+<span class="title">Keywords</span>
+Performance, Documentation
+</div>
+
+
+<h2 class="counting">Introduction</h2>
+<p>Moore’s Law of exponentially increasing transistor counts per chip
+space appears to hold for the next years. However, due to technical
+issues, chip producers are unable to translate “more transistors”
+into “faster processors” for the last decade. Instead, multicore
+architectures were introduced. Extrapolating those trends, we can expect
+reach a thousand cores by 2020. Unfortunately, our current architecture
+will have to change to scale accordingly. For example, bus snooping cache
+coherence protocols do not scale. The answer could be to sacrifice cache
+coherence, which brings up additional problems for programmers. Another
+aspect is energy consumption, which could be decreased by lowering the
+voltage. However, this increases the chance of computation failures.</p>
+
+<h3 class="counting">Invasive Computing</h3>
+
+<p>The Invasive Computing [7] paradigm is an answer to these challenges. It suggests a resource-aware programming model, where
+the system adapts to changing resource needs and availabilities. The core concepts are invasion, infection and retreat, which
+basically mean resource acquisition, use and release. The processes compete for the available resources, which results into self-organizing behavior.</p>
+
+<p>Such a resource-aware programming style also enables the processes to use uncommon hardware features, like reconfigurable
+processors [5]. This open up a lot of possibilities, which should also
+reflect on higher levels, such as the operating system, the compiler,
+the programming language, and the application.</p>
+
+<h3 class="counting">libFirm</h3>
+
+<p>The libFirm infrastructure provides a generic compiler backend
+for multiple architectures and a suite of optimizations, which are
+performed on the Firm intermediate representation.</p>
+
+<p>The libFirm library was mostly used for research on code generation, most prominently for SSA-based register allocation [1–4].
+However, it also contains most common optimization techniques
+and is comparable to production compilers.</p>
+
+<p>The Firm intermediate representation is always in SSA form and
+needs never be deconstructed during code generation. It is graph-based and consists of operations and dependency edges, which
+model data-, control flow-, instruction schedule-, and more dependencies.</p>
+
+<h3 class="counting">X10</h3>
+
+<p>The X10 programming language \cite{x10report220}
+already provides various features,
+which make it suitable for programming \enquote{invasive architectures},
+since it was developed for todays high-performance computing.
+For example, the partitioned global address space (PGAS),
+which models a cluster network adapts quite naturally
+to a cache-incoherent multi-core architecture.
+The employable X10 concept is a \intro{place}.
+Threads, which are executed in the same place, have shared memory,
+whereas threads in different places must communicate
+with other means.</p>
+
+<p>Compared to the C language,
+X10 lacks the \enquote{close to the metal} features.
+For example, the memory is always managed by a garbage collector
+and there is no distinction between different kinds of memory.
+However, future architectures might need to differ between
+off-core memory (large, slow, cache incoherent) and
+on-core memory (small, fast, cache coherent),
+instead of relying on caching policies.</p>
+
+<p>Currently, the X10 compiler can produce Java and C++ code,
+which adds another layer between programmer and processor.
+For example,
+the type information of an X10 program
+does not completely fit into the Java/C++ representation.
+Due to this indirection some optimization possibilities are missed
+and some unnecessary overhead is introduced,
+e.g. to maintain runtime type information.</p>
+
+<p>We present our work on a native assembler backend for the X10 compiler,
+which employs libFirm for optimization and code generation.
+Although it does not support the full language yet,
+we identified issues and opportunities.</p>
+
+<p>In \autoref{sec:related} we discuss other backends
+and code generation approaches.
+Then \autoref{sec:challenges} presents the issues with the current system
+and \autoref{sec:status} shows, what is left to do.
+Finally, we close in \autoref{sec:conclusion}.</p>
+
+<h2 class="counting">Related Work</h2>
+<h3 class="counting">Existing X10 Backends</h3>
+<h3 class="counting">Compiler Libraries</h3>
+
+<h2 class="counting">Challenges</h2>
+<h3 class="counting">Deconstructing Generics</h3>
+<h3 class="counting">Generic Native Methods</h3>
+
+<h2 class="counting">Status</h2>
+<h2 class="counting">Conclusions and Future Work</h2>
+<h2 class="counting">Acknowledgements</h2>
+<p>This work was partly supported by the German Research Foundation (DFG)
+as part of the Transregional Collaborative Research
+Centre “Invasive Computing” (SFB/TR 89).</p>
+
+<h2>References</h2>
+
+</div>
+</body>

@@ -1,0 +1,93 @@
+/**** ACM Guidelines ****
+ *
+ * All material on each page should fit within a rectangle of 18 X 23.5 cm (7" X 9.25"), centered on the page, beginning 1.9 cm (0.75") from the top of the page and ending with 2.54 cm (1") from the bottom.  The right and left margins should be 1.9 cm (.75"). The text should be in two 8.45 cm (3.33") columns with a .83 cm (.33") gutter.
+ *
+ * The body text is set in 9-point Times (Roman).  Use sans serif or nonproportional fonts only for special purposes, such as distinguishing source code text.  Right margins should be justified, not ragged.
+ *
+ * The title (Helvetica or Arial 18-point bold), authors’ names (Helvetica or Arial 12point), author addresses, affiliations and phone number (Helvetica or Arial 10-point) and email address (Helvetica 12 point) run across the full width of the page.  Up to three author names and information blocks may be aligned at the top of the first page; any additional author information appears in a paragraph at the end of the paper.
+ */
+
+body {
+	font: 9pt "Times New Roman",Times,serif;
+	text-align: justify;
+	width: 18cm;
+	margin: 1.9cm 1.9cm 2.54cm 1.9cm;
+}
+
+#content {
+	clear: both;
+	column-width: 8.45cm;
+	-moz-column-width: 8.45cm;
+	-webkit-column-width: 8.45cm;
+	column-count: 2;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-gap: 0.83cm;
+	-moz-column-gap: 0.83cm;
+	-webkit-column-gap: 0.83cm;
+}
+
+div.author {
+	width: 8.065cm;
+	padding: 0.1cm 0.4325cm;
+	display: inline-block;
+	text-align: center;
+}
+
+/** HEADER STYLEING **/
+
+.author,
+h1 {
+	font: bold 18pt;
+	font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
+	text-align: center;
+}
+
+.author .address,
+.author .affiliation,
+.author .phone,
+.author .institute,
+.author .email { display: block; }
+
+.author .address,
+.author .affiliation,
+.author .phone,
+.author .institute { font-size: 10pt; }
+
+h2, h3,
+.author .email,
+.author .name { font-size: 12pt; }
+
+h2 { text-transform: uppercase; }
+h3, h4, h5, h6 { text-transform: capitalize; }
+
+h4, h5, h6 { font-size: 11pt; }
+
+.author .email,
+.author .name { margin: 0 0.2cm; }
+
+#categories,
+#terms,
+#keywords { margin: 1em 0; }
+
+h1, h2, h3,
+#categories .title,
+#terms .title,
+#keywords .title { font-weight: bold; }
+
+#categories .title,
+#terms .title,
+#keywords .title { margin-right: 1em; }
+
+/** COUNTERS **/
+
+#content { counter-reset: section 0; }
+h2.counting { counter-increment: section; counter-reset: subsection 0; }
+h2.counting:before  { content: counter(section); padding-right: 1em; }
+h3.counting { counter-increment: subsection; }
+h3.counting:before  { content: counter(section) "." counter(subsection); padding-right: 1em; }
+
+/** MORE **/
+
+p { margin: 0; }
+p+p { text-indent: 0.5cm; }
