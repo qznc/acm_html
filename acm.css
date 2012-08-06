@@ -25,6 +25,8 @@ body {
 	column-gap: 0.83cm;
 	-moz-column-gap: 0.83cm;
 	-webkit-column-gap: 0.83cm;
+	hyphens: auto;
+	-moz-hyphens: auto;
 }
 
 div.author {
