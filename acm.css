@@ -7,6 +7,7 @@
  * The title (Helvetica or Arial 18-point bold), authors’ names (Helvetica or Arial 12point), author addresses, affiliations and phone number (Helvetica or Arial 10-point) and email address (Helvetica 12 point) run across the full width of the page.  Up to three author names and information blocks may be aligned at the top of the first page; any additional author information appears in a paragraph at the end of the paper.
  */
 
+.body,
 body {
 	font: 9pt "Times New Roman",Times,serif;
 	text-align: justify;
