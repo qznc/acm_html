@@ -37,6 +37,12 @@ div.author {
 	text-align: center;
 }
 
+div#copyright_notice {
+	margin-top: 1cm;
+	outline: 2px solid red;
+	page-break-after: always;
+}
+
 /** HEADER STYLEING **/
 
 .author,
